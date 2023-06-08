@@ -12,7 +12,7 @@ export const TagsSidebar = async () => {
       </div>
       <div className="border-gray-600 border px-2">
         {Object.entries(tags).map(([key, value]) => (
-          <p className="text-gray-900 text-2xl py-2">
+          <p className="text-gray-900 text-2xl py-2" key={key}>
             <Link href={`/tag/${key}`}>
               {key} ({value})
             </Link>

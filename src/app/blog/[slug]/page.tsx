@@ -1,3 +1,4 @@
+import { MarkdownBlocks } from '@/components/MarkdownBlocks'
 import { Tag } from '@/components/Tag'
 import { getPost, getSlugs } from '@/libs/notion'
 import type { PostAndBody } from '@/libs/notion'
@@ -39,7 +40,9 @@ const BlogDetailPage = async (props: Props) => {
 
       <h2 className="text-gray-900 text-4xl">{post.title}</h2>
 
-      <div>{post.body}</div>
+      <div className="my-6 text-gray-900">
+        <MarkdownBlocks body={post.body} />
+      </div>
 
       <div className="flex flex-row justify-end">
         <div className="text-xl text-gray-900">{post.createdAt}</div>

@@ -45,7 +45,9 @@ const BlogDetailPage = async (props: Props) => {
       </div>
 
       <div className="flex flex-row justify-end">
-        <div className="text-xl text-gray-900">{post.createdAt}</div>
+        <div className="text-xl text-gray-900">
+          {post.createdAt.split('T')[0]}
+        </div>
       </div>
     </div>
   )

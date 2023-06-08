@@ -9,7 +9,7 @@ type Props = {
 
 export const GlobalNavigation = (props: Props) => {
   return (
-    <nav className="my-3">
+    <nav className="my-1.5 md:my-3">
       {props.items.map((item) => (
         <GlobalNavigationItem
           name={item.name}

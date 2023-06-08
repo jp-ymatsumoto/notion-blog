@@ -10,7 +10,8 @@ const BlogDetailPageLayout = (props: Props) => {
       <div className="flex flex-row mt-4 mb-4 w-full gap-3 mx-4">
         <main className="flex-auto">{props.children}</main>
         <div>
-          {/* TODO: エラーを確認する */}
+          {/* Next.13のApp Routerのエラーに対する一時的な対応です */}
+          {/* @ts-expect-error */}
           <TagsSidebar />
         </div>
       </div>

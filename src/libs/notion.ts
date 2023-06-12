@@ -41,6 +41,36 @@ const getPostsRawData = async () => {
   })
 }
 
+// すべてのブログ記事を生データで取得する
+export const getPostsDataPagination = async (
+  pageSize: number = 2,
+  startCursor: string | undefined = undefined
+) => {
+  const rawPosts = await notion.databases.query({
+    database_id: process.env.NOTION_DATABASE_ID as string,
+    page_size: pageSize,
+    start_cursor: startCursor,
+    // 公開フラグがtrueのブログ記事だけ取得する
+    filter: {
+      property: 'published',
+      checkbox: {
+        equals: true,
+      },
+    },
+    // 作成日時の降順で取得する
+    sorts: [
+      {
+        property: 'createdAt',
+        direction: 'descending',
+      },
+    ],
+  })
+  console.log(rawPosts)
+
+  const posts = rawPosts.results.map((post) => getPostProperties(post))
+  return posts
+}
+
 // 特定のブログ記事の生データを取得する
 const getPostRawData = async (slug: string) => {
   return await notion.databases.query({
@@ -123,9 +153,27 @@ export const getTags = async () => {
 
 export const getSlugs = async () => {
   const rawPosts = await getPostsRawData()
+  console.log(rawPosts)
+
   const posts: { slug: string }[] = rawPosts.results.map((post) =>
     getPostPropertySlug(post)
   )
   const slugs = posts.map((post) => post.slug)
   return slugs
 }
+
+// ページの総数を取得する
+export const getPages = async (pageSize: number) => {
+  const rawPosts = await getPostsRawData()
+  const pages: number = Math.ceil(rawPosts.results.length / pageSize)
+  return pages
+}
+
+// TODO: ページネーションの実装
+
+// export const getPostsPagination = async () => {
+//   const rawPosts = await getPostsRawDataPagination(2, '0')
+//   const posts = rawPosts.results.map((post) => getPostProperties(post))
+
+//   return posts
+// }

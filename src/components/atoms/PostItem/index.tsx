@@ -20,8 +20,8 @@ export const PostItem = (props: Props) => {
     <section className="flex flex-col justify-center w-80 text-gray-900">
       {/* 記事のサムネイル */}
       <PostThumbnail
-        imageSrc={'/image.jpg'}
-        categoryName={''}
+        imageSrc={props.post.cover === null ? '/image.jpg' : props.post.cover}
+        categoryName={props.post.category}
         createdAt={props.post.createdAt}
       />
 

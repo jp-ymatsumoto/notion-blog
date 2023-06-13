@@ -13,7 +13,7 @@ type Props = {
  */
 export const PostList = (props: Props) => {
   return (
-    <div className="mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 mt-10 mb-10">
+    <div className="mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 gap-x-10 mt-10 mb-10">
       {props.posts.map((post) => (
         <PostItem post={post} key={post.slug} />
       ))}

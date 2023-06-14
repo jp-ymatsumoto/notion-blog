@@ -7,7 +7,7 @@ const TopPage = async () => {
   const posts: Post[] = await getPosts()
 
   return (
-    <div className="container mx-auto mt-5 mb-10">
+    <div className="container mx-auto mt-5 mb-10 lg:max-w-5xl ">
       {/* スマートフォン画面 */}
       <main className="flex flex-col justify-center">
         <PostList posts={posts} />
